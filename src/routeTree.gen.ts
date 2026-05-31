@@ -9,8 +9,86 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TurfProductionRouteImport } from './routes/turf-production'
+import { Route as SmallPacksRouteImport } from './routes/small-packs'
+import { Route as ProforceRouteImport } from './routes/proforce'
+import { Route as ProductsRouteImport } from './routes/products'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as IvmRouteImport } from './routes/ivm'
+import { Route as HydroforceRouteImport } from './routes/hydroforce'
+import { Route as DuracoteRouteImport } from './routes/duracote'
+import { Route as DownloadsRouteImport } from './routes/downloads'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BioforceRouteImport } from './routes/bioforce'
+import { Route as AquaticsRouteImport } from './routes/aquatics'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TurfProductionRoute = TurfProductionRouteImport.update({
+  id: '/turf-production',
+  path: '/turf-production',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmallPacksRoute = SmallPacksRouteImport.update({
+  id: '/small-packs',
+  path: '/small-packs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProforceRoute = ProforceRouteImport.update({
+  id: '/proforce',
+  path: '/proforce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IvmRoute = IvmRouteImport.update({
+  id: '/ivm',
+  path: '/ivm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HydroforceRoute = HydroforceRouteImport.update({
+  id: '/hydroforce',
+  path: '/hydroforce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DuracoteRoute = DuracoteRouteImport.update({
+  id: '/duracote',
+  path: '/duracote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadsRoute = DownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BioforceRoute = BioforceRouteImport.update({
+  id: '/bioforce',
+  path: '/bioforce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AquaticsRoute = AquaticsRouteImport.update({
+  id: '/aquatics',
+  path: '/aquatics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +97,214 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/aquatics': typeof AquaticsRoute
+  '/bioforce': typeof BioforceRoute
+  '/contact': typeof ContactRoute
+  '/downloads': typeof DownloadsRoute
+  '/duracote': typeof DuracoteRoute
+  '/hydroforce': typeof HydroforceRoute
+  '/ivm': typeof IvmRoute
+  '/news': typeof NewsRoute
+  '/products': typeof ProductsRoute
+  '/proforce': typeof ProforceRoute
+  '/small-packs': typeof SmallPacksRoute
+  '/turf-production': typeof TurfProductionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/aquatics': typeof AquaticsRoute
+  '/bioforce': typeof BioforceRoute
+  '/contact': typeof ContactRoute
+  '/downloads': typeof DownloadsRoute
+  '/duracote': typeof DuracoteRoute
+  '/hydroforce': typeof HydroforceRoute
+  '/ivm': typeof IvmRoute
+  '/news': typeof NewsRoute
+  '/products': typeof ProductsRoute
+  '/proforce': typeof ProforceRoute
+  '/small-packs': typeof SmallPacksRoute
+  '/turf-production': typeof TurfProductionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/aquatics': typeof AquaticsRoute
+  '/bioforce': typeof BioforceRoute
+  '/contact': typeof ContactRoute
+  '/downloads': typeof DownloadsRoute
+  '/duracote': typeof DuracoteRoute
+  '/hydroforce': typeof HydroforceRoute
+  '/ivm': typeof IvmRoute
+  '/news': typeof NewsRoute
+  '/products': typeof ProductsRoute
+  '/proforce': typeof ProforceRoute
+  '/small-packs': typeof SmallPacksRoute
+  '/turf-production': typeof TurfProductionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/aquatics'
+    | '/bioforce'
+    | '/contact'
+    | '/downloads'
+    | '/duracote'
+    | '/hydroforce'
+    | '/ivm'
+    | '/news'
+    | '/products'
+    | '/proforce'
+    | '/small-packs'
+    | '/turf-production'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/aquatics'
+    | '/bioforce'
+    | '/contact'
+    | '/downloads'
+    | '/duracote'
+    | '/hydroforce'
+    | '/ivm'
+    | '/news'
+    | '/products'
+    | '/proforce'
+    | '/small-packs'
+    | '/turf-production'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/aquatics'
+    | '/bioforce'
+    | '/contact'
+    | '/downloads'
+    | '/duracote'
+    | '/hydroforce'
+    | '/ivm'
+    | '/news'
+    | '/products'
+    | '/proforce'
+    | '/small-packs'
+    | '/turf-production'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AquaticsRoute: typeof AquaticsRoute
+  BioforceRoute: typeof BioforceRoute
+  ContactRoute: typeof ContactRoute
+  DownloadsRoute: typeof DownloadsRoute
+  DuracoteRoute: typeof DuracoteRoute
+  HydroforceRoute: typeof HydroforceRoute
+  IvmRoute: typeof IvmRoute
+  NewsRoute: typeof NewsRoute
+  ProductsRoute: typeof ProductsRoute
+  ProforceRoute: typeof ProforceRoute
+  SmallPacksRoute: typeof SmallPacksRoute
+  TurfProductionRoute: typeof TurfProductionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/turf-production': {
+      id: '/turf-production'
+      path: '/turf-production'
+      fullPath: '/turf-production'
+      preLoaderRoute: typeof TurfProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/small-packs': {
+      id: '/small-packs'
+      path: '/small-packs'
+      fullPath: '/small-packs'
+      preLoaderRoute: typeof SmallPacksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proforce': {
+      id: '/proforce'
+      path: '/proforce'
+      fullPath: '/proforce'
+      preLoaderRoute: typeof ProforceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ivm': {
+      id: '/ivm'
+      path: '/ivm'
+      fullPath: '/ivm'
+      preLoaderRoute: typeof IvmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hydroforce': {
+      id: '/hydroforce'
+      path: '/hydroforce'
+      fullPath: '/hydroforce'
+      preLoaderRoute: typeof HydroforceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/duracote': {
+      id: '/duracote'
+      path: '/duracote'
+      fullPath: '/duracote'
+      preLoaderRoute: typeof DuracoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/downloads': {
+      id: '/downloads'
+      path: '/downloads'
+      fullPath: '/downloads'
+      preLoaderRoute: typeof DownloadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bioforce': {
+      id: '/bioforce'
+      path: '/bioforce'
+      fullPath: '/bioforce'
+      preLoaderRoute: typeof BioforceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aquatics': {
+      id: '/aquatics'
+      path: '/aquatics'
+      fullPath: '/aquatics'
+      preLoaderRoute: typeof AquaticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +317,30 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AquaticsRoute: AquaticsRoute,
+  BioforceRoute: BioforceRoute,
+  ContactRoute: ContactRoute,
+  DownloadsRoute: DownloadsRoute,
+  DuracoteRoute: DuracoteRoute,
+  HydroforceRoute: HydroforceRoute,
+  IvmRoute: IvmRoute,
+  NewsRoute: NewsRoute,
+  ProductsRoute: ProductsRoute,
+  ProforceRoute: ProforceRoute,
+  SmallPacksRoute: SmallPacksRoute,
+  TurfProductionRoute: TurfProductionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
