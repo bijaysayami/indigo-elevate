@@ -1,0 +1,95 @@
+import { Link } from "@tanstack/react-router";
+import { COMPANY, PRODUCT_RANGES } from "@/lib/site-data";
+import logo from "@/assets/logo.png";
+
+export function Footer() {
+  return (
+    <footer className="relative mt-32 overflow-hidden bg-[var(--brand-deep)] text-white">
+      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-60 bg-radial-fade" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid opacity-[0.07]" />
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8 md:py-20">
+        <div>
+          <Link to="/" aria-label="Indigo Specialty Products — home" className="inline-block rounded-xl bg-white/95 p-3">
+            <img src={logo} alt="Indigo Specialty Products" width={160} height={62} className="h-10 w-auto" />
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
+            Australian-manufactured plant protection, nutrition, soil surfactants, biologicals and aquatic management — engineered for specialty markets.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {COMPANY.socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-white/40 hover:text-white"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <FooterCol title="Products">
+          {PRODUCT_RANGES.slice(0, 6).map((p) => (
+            <FooterLink key={p.slug} to={`/${p.slug}`}>
+              {p.name}
+            </FooterLink>
+          ))}
+          <FooterLink to="/products">All products</FooterLink>
+        </FooterCol>
+
+        <FooterCol title="Company">
+          <FooterLink to="/about">About</FooterLink>
+          <FooterLink to="/news">News & insights</FooterLink>
+          <FooterLink to="/downloads">Labels & SDS</FooterLink>
+          <FooterLink to="/contact">Contact</FooterLink>
+        </FooterCol>
+
+        <FooterCol title="Get in touch">
+          <p className="text-sm text-white/70">{COMPANY.address}</p>
+          <a className="block text-sm text-white/80 hover:text-white" href={COMPANY.phoneHref}>
+            {COMPANY.phone}
+          </a>
+          <a className="block text-sm text-white/80 hover:text-white" href={`mailto:${COMPANY.email}`}>
+            {COMPANY.email}
+          </a>
+          <a className="block text-sm text-white/80 hover:text-white" href={`mailto:${COMPANY.ordersEmail}`}>
+            Orders: {COMPANY.ordersEmail}
+          </a>
+        </FooterCol>
+      </div>
+
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-3 px-5 py-6 text-xs text-white/55 md:flex-row md:items-center md:px-8">
+          <p>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
+          <div className="flex gap-4">
+            <a href="https://indigospecialty.com.au/privacy-policy-2/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+              Privacy
+            </a>
+            <Link to="/contact" className="hover:text-white">
+              Support
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-white/55">{title}</h3>
+      <ul className="flex flex-col gap-2">{Array.isArray(children) ? children.map((c, i) => <li key={i}>{c}</li>) : <li>{children}</li>}</ul>
+    </div>
+  );
+}
+
+function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <Link to={to} className="text-sm text-white/75 transition-colors hover:text-white">
+      {children}
+    </Link>
+  );
+}
