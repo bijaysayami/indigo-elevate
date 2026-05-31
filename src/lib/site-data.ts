@@ -160,7 +160,7 @@ export type NewsItem = {
   image: ProductRange["image"];
 };
 
-export const NEWS: NewsItem[] = [
+export const NEWS: NewsItem[] = ([
   {
     slug: "autumn-newsletter-2026",
     title: "Autumn Newsletter 2026",
@@ -231,9 +231,9 @@ export const NEWS: NewsItem[] = [
       "Simplified vegetation management for hard-to-maintain areas with the new Padre 270 PGR.",
     category: "Product",
     date: "2025-11-28",
-    image: "ivm" as ProductRange["image"] extends infer T ? "forestry" : never,
+    image: "forestry",
   },
-].map((n) => ({ ...n, image: (n.image as ProductRange["image"]) || "forestry" }));
+] as const).map((n) => ({ ...n })) as NewsItem[];
 
 export const COMPANY = {
   name: "Indigo Specialty Products",
