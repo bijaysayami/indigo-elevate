@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { COMPANY } from "@/lib/site-data";
 
 function NotFoundComponent() {
   return (
@@ -77,19 +80,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "theme-color", content: "#0c2340" },
+      { name: "author", content: "Indigo Specialty Products" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Indigo Specialty Products" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: COMPANY.name,
+          url: "/",
+          email: COMPANY.email,
+          telephone: `+61 ${COMPANY.phone}`,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "3/49 Donaldson Road",
+            addressLocality: "Rocklea",
+            addressRegion: "QLD",
+            postalCode: "4106",
+            addressCountry: "AU",
+          },
+          sameAs: COMPANY.socials.map((s) => s.href),
+        }),
       },
     ],
   }),
@@ -118,8 +140,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Header />
+      <main id="main" className="min-h-dvh">
+        <Outlet />
+      </main>
+      <Footer />
     </QueryClientProvider>
   );
 }
