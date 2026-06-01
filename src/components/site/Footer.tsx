@@ -1,6 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { COMPANY, PRODUCT_RANGES } from "@/lib/site-data";
 import logo from "@/assets/logo.png";
+import { Linkedin, Facebook, Instagram, Youtube, Twitter, AtSign } from "lucide-react";
+
+const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  LinkedIn: Linkedin,
+  Facebook: Facebook,
+  Instagram: Instagram,
+  YouTube: Youtube,
+  Twitter: Twitter,
+  Threads: AtSign,
+};
 
 export function Footer() {
   return (
@@ -16,17 +26,22 @@ export function Footer() {
             Australian-manufactured plant protection, nutrition, soil surfactants, biologicals and aquatic management — engineered for specialty markets.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
-            {COMPANY.socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/80 transition-colors hover:border-white/40 hover:text-white"
-              >
-                {s.label}
-              </a>
-            ))}
+            {COMPANY.socials.map((s) => {
+              const Icon = SOCIAL_ICONS[s.label] ?? AtSign;
+              return (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  title={s.label}
+                  className="inline-flex size-9 items-center justify-center rounded-full border border-white/15 text-white/75 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-leaf)]/60 hover:bg-[color-mix(in_oklab,var(--brand-leaf)_18%,transparent)] hover:text-white"
+                >
+                  <Icon className="size-4" />
+                </a>
+              );
+            })}
           </div>
         </div>
 
