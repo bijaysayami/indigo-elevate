@@ -16,7 +16,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQ, setSearchQ] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -49,13 +48,8 @@ export function Header() {
     };
   }, [open]);
 
-  useEffect(() => {
-    if (searchOpen) searchInputRef.current?.focus();
-  }, [searchOpen]);
-
   // Close any expanded UI when route changes.
   useEffect(() => {
-    setSearchOpen(false);
     setOpen(false);
     setProductsOpen(false);
   }, [location.pathname]);
@@ -64,7 +58,6 @@ export function Header() {
     e.preventDefault();
     const q = searchQ.trim();
     navigate({ to: "/products", search: q ? { q } : {} });
-    setSearchOpen(false);
   };
 
   return (
