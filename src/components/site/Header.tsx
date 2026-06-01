@@ -51,13 +51,22 @@ export function Header() {
       ].join(" ")}
     >
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-6 px-5 md:h-20 md:px-8">
-        <Link to="/" className="flex items-center gap-2" aria-label="Indigo Specialty Products — home">
+        <Link
+          to="/"
+          aria-label="Indigo Specialty Products — home"
+          className={[
+            "flex items-center gap-2 rounded-2xl px-2.5 py-1.5 transition-colors",
+            scrolled
+              ? "bg-transparent"
+              : "bg-white/92 ring-1 ring-white/40 backdrop-blur-sm shadow-[0_6px_22px_-12px_rgba(12,35,64,0.45)]",
+          ].join(" ")}
+        >
           <img
             src={logo}
             alt="Indigo Specialty Products"
             width={140}
             height={54}
-            className="h-9 w-auto md:h-10"
+            className="h-8 w-auto md:h-9"
           />
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
@@ -68,9 +77,12 @@ export function Header() {
           >
             <Link
               to="/products"
-              activeProps={{ className: "text-foreground" }}
-              inactiveProps={{ className: "text-muted-foreground" }}
-              className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-foreground"
+              className={[
+                "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                scrolled
+                  ? "text-foreground/80 hover:text-[var(--brand-violet)]"
+                  : "text-white/90 hover:text-[var(--brand-glow)]",
+              ].join(" ")}
               aria-haspopup="true"
               aria-expanded={productsOpen}
               onFocus={openProducts}
@@ -102,9 +114,9 @@ export function Header() {
                       key={p.slug}
                       to={`/${p.slug}`}
                       onClick={() => setProductsOpen(false)}
-                      className="group flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-muted"
+                      className="group flex flex-col gap-0.5 rounded-xl px-3 py-2.5 transition-colors hover:bg-[color-mix(in_oklab,var(--brand-leaf)_12%,transparent)]"
                     >
-                      <span className="text-sm font-semibold text-foreground transition-transform duration-200 group-hover:translate-x-0.5">
+                      <span className="text-sm font-semibold text-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-[var(--brand-violet)]">
                         {p.name}
                       </span>
                       <span className="text-xs text-muted-foreground">{p.tagline}</span>
@@ -127,9 +139,12 @@ export function Header() {
             <Link
               key={item.to}
               to={item.to}
-              activeProps={{ className: "text-foreground" }}
-              inactiveProps={{ className: "text-muted-foreground" }}
-              className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-foreground"
+              className={[
+                "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                scrolled
+                  ? "text-foreground/80 hover:text-[var(--brand-violet)]"
+                  : "text-white/90 hover:text-[var(--brand-glow)]",
+              ].join(" ")}
             >
               {item.label}
             </Link>
@@ -138,7 +153,7 @@ export function Header() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:bg-[var(--brand-violet)] hover:shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--brand-violet)_60%,transparent)]"
           >
             <Search className="size-4" aria-hidden="true" />
             Search products
