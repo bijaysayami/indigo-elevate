@@ -11,6 +11,16 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+// Shared animated-underline classes for primary nav links.
+// A 2px line slides in from the left and a soft glow fades in beneath it.
+const navLinkBase =
+  "relative inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-colors " +
+  "after:pointer-events-none after:absolute after:left-4 after:right-4 after:bottom-1 after:h-[2px] " +
+  "after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r " +
+  "after:from-[var(--brand-leaf)] after:via-[var(--brand-glow)] after:to-[var(--brand-violet)] " +
+  "after:transition-transform after:duration-300 after:ease-out " +
+  "hover:after:scale-x-100 focus-visible:after:scale-x-100";
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -119,10 +129,11 @@ export function Header() {
             <Link
               to="/products"
               className={[
-                "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                navLinkBase,
                 solid
                   ? "text-foreground/80 hover:text-[var(--brand-violet)]"
                   : "text-white/90 hover:text-[var(--brand-glow)]",
+                productsOpen ? "after:scale-x-100" : "",
               ].join(" ")}
               aria-haspopup="true"
               aria-expanded={productsOpen}
@@ -181,11 +192,12 @@ export function Header() {
               key={item.to}
               to={item.to}
               className={[
-                "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                navLinkBase,
                 solid
                   ? "text-foreground/80 hover:text-[var(--brand-violet)]"
                   : "text-white/90 hover:text-[var(--brand-glow)]",
               ].join(" ")}
+              activeProps={{ className: "after:scale-x-100" }}
             >
               {item.label}
             </Link>
