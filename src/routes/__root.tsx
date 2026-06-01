@@ -85,6 +85,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Indigo Specialty Products" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "Indigo Elevate is a modern, high-end website redesign for Indigo Specialty." },
+      { property: "og:description", content: "Indigo Elevate is a modern, high-end website redesign for Indigo Specialty." },
+      { name: "twitter:description", content: "Indigo Elevate is a modern, high-end website redesign for Indigo Specialty." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b31fa6cf-70d5-4bc2-bad9-7ca87185121f/id-preview-95680f79--8e376327-1038-46e0-8b96-4abe95e59a61.lovable.app-1780302795833.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b31fa6cf-70d5-4bc2-bad9-7ca87185121f/id-preview-95680f79--8e376327-1038-46e0-8b96-4abe95e59a61.lovable.app-1780302795833.png" },
     ],
     links: [
       {
