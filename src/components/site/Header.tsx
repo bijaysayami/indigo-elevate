@@ -16,7 +16,6 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQ, setSearchQ] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -49,13 +48,8 @@ export function Header() {
     };
   }, [open]);
 
-  useEffect(() => {
-    if (searchOpen) searchInputRef.current?.focus();
-  }, [searchOpen]);
-
   // Close any expanded UI when route changes.
   useEffect(() => {
-    setSearchOpen(false);
     setOpen(false);
     setProductsOpen(false);
   }, [location.pathname]);
@@ -64,7 +58,6 @@ export function Header() {
     e.preventDefault();
     const q = searchQ.trim();
     navigate({ to: "/products", search: q ? { q } : {} });
-    setSearchOpen(false);
   };
 
   return (
@@ -191,47 +184,36 @@ export function Header() {
             <span className="hidden lg:inline">{COMPANY.phone}</span>
           </a>
 
-          {/* Expandable product search */}
+          {/* Always-visible product search field */}
           <form
             onSubmit={submitSearch}
+            role="search"
             className={[
-              "group flex items-center gap-2 rounded-full bg-foreground text-background transition-[width,background-color,box-shadow] duration-300 ease-out",
-              "hover:bg-[var(--brand-violet)] hover:shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--brand-violet)_60%,transparent)]",
-              searchOpen ? "w-72 px-3 py-1.5" : "w-auto px-4 py-2",
+              "flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors focus-within:ring-2 focus-within:ring-[var(--brand-violet)]/40",
+              solid
+                ? "border-border bg-background/80 text-foreground"
+                : "border-white/25 bg-white/10 text-white backdrop-blur-sm",
             ].join(" ")}
           >
-            <button
-              type={searchOpen ? "submit" : "button"}
-              onClick={() => {
-                if (!searchOpen) setSearchOpen(true);
-              }}
-              aria-label={searchOpen ? "Submit search" : "Open search"}
-              className="inline-flex items-center gap-2 text-sm font-medium"
-            >
-              <Search className="size-4" aria-hidden="true" />
-              {!searchOpen && <span>Search products</span>}
-            </button>
+            <Search className={["size-4", solid ? "text-muted-foreground" : "text-white/70"].join(" ")} aria-hidden="true" />
             <input
               ref={searchInputRef}
               type="text"
               value={searchQ}
               onChange={(e) => setSearchQ(e.target.value)}
-              placeholder="Search ranges…"
+              placeholder="Search products…"
               aria-label="Search products"
               className={[
-                "min-w-0 flex-1 bg-transparent text-sm text-background placeholder:text-background/60 outline-none transition-opacity duration-200",
-                searchOpen ? "opacity-100" : "w-0 opacity-0 pointer-events-none",
+                "w-44 bg-transparent text-sm outline-none lg:w-56",
+                solid ? "placeholder:text-muted-foreground" : "placeholder:text-white/60",
               ].join(" ")}
             />
-            {searchOpen && (
+            {searchQ && (
               <button
                 type="button"
-                onClick={() => {
-                  setSearchOpen(false);
-                  setSearchQ("");
-                }}
-                aria-label="Close search"
-                className="rounded-full p-1 text-background/80 hover:text-background"
+                onClick={() => setSearchQ("")}
+                aria-label="Clear search"
+                className={["rounded-full p-0.5 opacity-70 hover:opacity-100", solid ? "text-foreground" : "text-white"].join(" ")}
               >
                 <X className="size-3.5" />
               </button>
