@@ -249,9 +249,9 @@ export function Header() {
               aria-label="Search products"
               tabIndex={searchOpen ? 0 : -1}
               className={[
-                "min-w-0 flex-1 bg-transparent text-sm outline-none transition-opacity duration-200",
+                "min-w-0 bg-transparent text-sm outline-none transition-opacity duration-200",
                 solid ? "placeholder:text-muted-foreground" : "placeholder:text-white/60",
-                searchOpen ? "w-full opacity-100" : "w-0 opacity-0 pointer-events-none",
+                searchOpen ? "flex-1 w-full opacity-100" : "w-0 flex-none opacity-0 pointer-events-none",
               ].join(" ")}
             />
             {searchOpen && (
