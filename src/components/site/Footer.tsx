@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { COMPANY, PRODUCT_RANGES } from "@/lib/site-data";
 import logo from "@/assets/logo.png";
 import soilBg from "@/assets/footer-soil.jpg";
+import grassStrip from "@/assets/footer-grass.png";
 import { Linkedin, Facebook, Instagram, Youtube, Twitter, AtSign } from "lucide-react";
 
 const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -15,7 +16,13 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> 
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 overflow-hidden text-white">
+    <footer className="relative mt-32 text-white">
+      <img
+        src={grassStrip}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -top-16 z-10 h-24 w-full object-cover object-bottom select-none"
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-cover bg-top bg-no-repeat"
@@ -23,9 +30,8 @@ export function Footer() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-24 bottom-0 bg-gradient-to-b from-transparent via-[color-mix(in_oklab,#1a0f08_55%,transparent)] to-[#0d0805]"
+        className="pointer-events-none absolute inset-0 bg-[color-mix(in_oklab,#1a0f08_45%,transparent)]"
       />
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-grid opacity-[0.05]" />
       <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8 md:py-20">
         <div>
           <Link to="/" aria-label="Indigo Specialty Products — home" className="inline-block rounded-xl bg-white/95 p-3">
