@@ -236,7 +236,7 @@ export function Header() {
                 if (!searchOpen) setSearchOpen(true);
               }}
               aria-label={searchOpen ? "Submit search" : "Search products"}
-              className="inline-flex items-center justify-center"
+              className={["inline-flex items-center justify-center shrink-0", searchOpen ? "" : "size-full"].join(" ")}
             >
               <Search className={["size-4 shrink-0", solid ? "text-muted-foreground" : "text-white/80"].join(" ")} aria-hidden="true" />
             </button>
