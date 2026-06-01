@@ -17,6 +17,7 @@ export function Header() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [searchQ, setSearchQ] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
@@ -52,12 +53,33 @@ export function Header() {
   useEffect(() => {
     setOpen(false);
     setProductsOpen(false);
+    setSearchOpen(false);
   }, [location.pathname]);
+
+  // Focus the input when the search expands, collapse on outside click / Escape.
+  useEffect(() => {
+    if (!searchOpen) return;
+    searchInputRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    const onClick = (e: MouseEvent) => {
+      const form = searchInputRef.current?.form;
+      if (form && !form.contains(e.target as Node)) setSearchOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+    };
+  }, [searchOpen]);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const q = searchQ.trim();
     navigate({ to: "/products", search: q ? { q } : {} });
+    setSearchOpen(false);
   };
 
   return (
@@ -184,18 +206,28 @@ export function Header() {
             <span className="hidden lg:inline">{COMPANY.phone}</span>
           </a>
 
-          {/* Always-visible product search field */}
+          {/* Compact search — icon-only by default, expands into an input on click */}
           <form
             onSubmit={submitSearch}
             role="search"
             className={[
-              "flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors focus-within:ring-2 focus-within:ring-[var(--brand-violet)]/40",
+              "flex items-center rounded-full border transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[var(--brand-violet)]/40",
               solid
                 ? "border-border bg-background/80 text-foreground"
                 : "border-white/25 bg-white/10 text-white backdrop-blur-sm",
+              searchOpen ? "w-64 pl-3 pr-1.5 py-1.5 gap-2" : "size-10 justify-center p-0",
             ].join(" ")}
           >
-            <Search className={["size-4", solid ? "text-muted-foreground" : "text-white/70"].join(" ")} aria-hidden="true" />
+            <button
+              type={searchOpen ? "submit" : "button"}
+              onClick={() => {
+                if (!searchOpen) setSearchOpen(true);
+              }}
+              aria-label={searchOpen ? "Submit search" : "Search products"}
+              className="inline-flex items-center justify-center"
+            >
+              <Search className={["size-4", solid ? "text-muted-foreground" : "text-white/80"].join(" ")} aria-hidden="true" />
+            </button>
             <input
               ref={searchInputRef}
               type="text"
@@ -203,17 +235,22 @@ export function Header() {
               onChange={(e) => setSearchQ(e.target.value)}
               placeholder="Search products…"
               aria-label="Search products"
+              tabIndex={searchOpen ? 0 : -1}
               className={[
-                "w-44 bg-transparent text-sm outline-none lg:w-56",
+                "min-w-0 flex-1 bg-transparent text-sm outline-none transition-opacity duration-200",
                 solid ? "placeholder:text-muted-foreground" : "placeholder:text-white/60",
+                searchOpen ? "w-full opacity-100" : "w-0 opacity-0 pointer-events-none",
               ].join(" ")}
             />
-            {searchQ && (
+            {searchOpen && (
               <button
                 type="button"
-                onClick={() => setSearchQ("")}
-                aria-label="Clear search"
-                className={["rounded-full p-0.5 opacity-70 hover:opacity-100", solid ? "text-foreground" : "text-white"].join(" ")}
+                onClick={() => {
+                  setSearchQ("");
+                  setSearchOpen(false);
+                }}
+                aria-label="Close search"
+                className={["rounded-full p-1 opacity-70 hover:opacity-100", solid ? "text-foreground" : "text-white"].join(" ")}
               >
                 <X className="size-3.5" />
               </button>
