@@ -1,8 +1,8 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Search, ChevronDown, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
-import { PRODUCT_RANGES } from "@/lib/site-data";
+import { PRODUCT_RANGES, COMPANY } from "@/lib/site-data";
 
 const NAV = [
   { to: "/news", label: "News" },
@@ -16,7 +16,15 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQ, setSearchQ] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
+  // On inner pages there's no hero banner behind the header, so always use the solid style.
+  const solid = scrolled || !isHome;
 
   const openProducts = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -41,11 +49,29 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
+
+  // Close any expanded UI when route changes.
+  useEffect(() => {
+    setSearchOpen(false);
+    setOpen(false);
+    setProductsOpen(false);
+  }, [location.pathname]);
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = searchQ.trim();
+    navigate({ to: "/products", search: q ? { q } : {} });
+    setSearchOpen(false);
+  };
+
   return (
     <header
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
+        solid
           ? "border-b border-border/60 bg-background/80 backdrop-blur-xl"
           : "bg-transparent",
       ].join(" ")}
@@ -56,7 +82,7 @@ export function Header() {
           aria-label="Indigo Specialty Products — home"
           className={[
             "flex items-center gap-2 rounded-2xl px-2.5 py-1.5 transition-colors",
-            scrolled
+            solid
               ? "bg-transparent"
               : "bg-white/92 ring-1 ring-white/40 backdrop-blur-sm shadow-[0_6px_22px_-12px_rgba(12,35,64,0.45)]",
           ].join(" ")}
@@ -79,7 +105,7 @@ export function Header() {
               to="/products"
               className={[
                 "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                scrolled
+                solid
                   ? "text-foreground/80 hover:text-[var(--brand-violet)]"
                   : "text-white/90 hover:text-[var(--brand-glow)]",
               ].join(" ")}
@@ -141,7 +167,7 @@ export function Header() {
               to={item.to}
               className={[
                 "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                scrolled
+                solid
                   ? "text-foreground/80 hover:text-[var(--brand-violet)]"
                   : "text-white/90 hover:text-[var(--brand-glow)]",
               ].join(" ")}
@@ -150,14 +176,67 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <Link
-            to="/products"
-            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:bg-[var(--brand-violet)] hover:shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--brand-violet)_60%,transparent)]"
+        <div className="hidden items-center gap-2 md:flex">
+          {/* Quick-call link — surfaces the company phone number directly in the header */}
+          <a
+            href={COMPANY.phoneHref}
+            className={[
+              "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition-colors",
+              solid
+                ? "text-foreground/85 hover:text-[var(--brand-violet)]"
+                : "text-white/90 hover:text-[var(--brand-glow)]",
+            ].join(" ")}
           >
-            <Search className="size-4" aria-hidden="true" />
-            Search products
-          </Link>
+            <Phone className="size-4" aria-hidden="true" />
+            <span className="hidden lg:inline">{COMPANY.phone}</span>
+          </a>
+
+          {/* Expandable product search */}
+          <form
+            onSubmit={submitSearch}
+            className={[
+              "group flex items-center gap-2 rounded-full bg-foreground text-background transition-[width,background-color,box-shadow] duration-300 ease-out",
+              "hover:bg-[var(--brand-violet)] hover:shadow-[0_10px_30px_-12px_color-mix(in_oklab,var(--brand-violet)_60%,transparent)]",
+              searchOpen ? "w-72 px-3 py-1.5" : "w-auto px-4 py-2",
+            ].join(" ")}
+          >
+            <button
+              type={searchOpen ? "submit" : "button"}
+              onClick={() => {
+                if (!searchOpen) setSearchOpen(true);
+              }}
+              aria-label={searchOpen ? "Submit search" : "Open search"}
+              className="inline-flex items-center gap-2 text-sm font-medium"
+            >
+              <Search className="size-4" aria-hidden="true" />
+              {!searchOpen && <span>Search products</span>}
+            </button>
+            <input
+              ref={searchInputRef}
+              type="text"
+              value={searchQ}
+              onChange={(e) => setSearchQ(e.target.value)}
+              placeholder="Search ranges…"
+              aria-label="Search products"
+              className={[
+                "min-w-0 flex-1 bg-transparent text-sm text-background placeholder:text-background/60 outline-none transition-opacity duration-200",
+                searchOpen ? "opacity-100" : "w-0 opacity-0 pointer-events-none",
+              ].join(" ")}
+            />
+            {searchOpen && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchOpen(false);
+                  setSearchQ("");
+                }}
+                aria-label="Close search"
+                className="rounded-full p-1 text-background/80 hover:text-background"
+              >
+                <X className="size-3.5" />
+              </button>
+            )}
+          </form>
         </div>
         <button
           type="button"
@@ -231,10 +310,16 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <a
+            href={COMPANY.phoneHref}
+            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-border px-4 py-3 text-base font-semibold text-foreground"
+          >
+            <Phone className="size-4" /> Call {COMPANY.phone}
+          </a>
           <Link
             to="/products"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-base font-medium text-background"
+            className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-3 text-base font-medium text-background"
           >
             <Search className="size-4" /> Search products
           </Link>
