@@ -221,13 +221,17 @@ export function Header() {
           {/* Compact search — icon-only by default, expands into an input on click */}
           <form
             onSubmit={submitSearch}
+            onClick={() => {
+              if (!searchOpen) setSearchOpen(true);
+            }}
+            onFocus={() => setSearchOpen(true)}
             role="search"
             className={[
-              "flex items-center rounded-full border transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[var(--brand-violet)]/40",
+              "flex shrink-0 cursor-text items-center overflow-hidden rounded-full border transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-[var(--brand-violet)]/40",
               solid
                 ? "border-border bg-background/80 text-foreground"
                 : "border-white/25 bg-white/10 text-white backdrop-blur-sm",
-              searchOpen ? "w-64 pl-3 pr-1.5 py-1.5 gap-2" : "size-10 justify-center p-0",
+              searchOpen ? "w-56 lg:w-64 pl-3 pr-1.5 py-1.5 gap-2" : "size-10 justify-center p-0",
             ].join(" ")}
           >
             <button
@@ -257,7 +261,8 @@ export function Header() {
             {searchOpen && (
               <button
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setSearchQ("");
                   setSearchOpen(false);
                 }}
