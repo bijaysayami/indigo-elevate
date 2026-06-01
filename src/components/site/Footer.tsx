@@ -34,7 +34,7 @@ export function Footer() {
       />
       <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8 md:py-20">
         <div>
-          <Link to="/" aria-label="Indigo Specialty Products — home" className="inline-block rounded-xl bg-white/95 p-3">
+          <Link to="/" aria-label="Indigo Specialty Products — home" className="inline-block">
             <img src={logo} alt="Indigo Specialty Products" width={160} height={62} className="h-10 w-auto" />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
