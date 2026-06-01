@@ -17,6 +17,7 @@ export function Header() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [searchQ, setSearchQ] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
@@ -52,12 +53,33 @@ export function Header() {
   useEffect(() => {
     setOpen(false);
     setProductsOpen(false);
+    setSearchOpen(false);
   }, [location.pathname]);
+
+  // Focus the input when the search expands, collapse on outside click / Escape.
+  useEffect(() => {
+    if (!searchOpen) return;
+    searchInputRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    const onClick = (e: MouseEvent) => {
+      const form = searchInputRef.current?.form;
+      if (form && !form.contains(e.target as Node)) setSearchOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+    };
+  }, [searchOpen]);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const q = searchQ.trim();
     navigate({ to: "/products", search: q ? { q } : {} });
+    setSearchOpen(false);
   };
 
   return (
