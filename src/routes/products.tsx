@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search, ArrowRight } from "lucide-react";
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
@@ -14,6 +14,9 @@ import nursery from "@/assets/nursery.jpg";
 const IMG = { droplet, turf, aquatics, forestry, nursery } as const;
 
 export const Route = createFileRoute("/products")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: typeof search.q === "string" ? search.q : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Products & Ranges — Indigo Specialty Products" },
@@ -38,8 +41,13 @@ export const Route = createFileRoute("/products")({
 const FILTERS = ["All", "Turf", "IVM", "Soil & water", "Biologicals", "Nutrition", "Aquatics", "Consumer", "Flagship"] as const;
 
 function ProductsPage() {
-  const [q, setQ] = useState("");
+  const { q: initialQ } = Route.useSearch();
+  const [q, setQ] = useState(initialQ ?? "");
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
+
+  useEffect(() => {
+    if (typeof initialQ === "string") setQ(initialQ);
+  }, [initialQ]);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
