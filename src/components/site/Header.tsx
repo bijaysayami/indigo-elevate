@@ -238,7 +238,7 @@ export function Header() {
               aria-label={searchOpen ? "Submit search" : "Search products"}
               className="inline-flex items-center justify-center"
             >
-              <Search className={["size-4", solid ? "text-muted-foreground" : "text-white/80"].join(" ")} aria-hidden="true" />
+              <Search className={["size-4 shrink-0", solid ? "text-muted-foreground" : "text-white/80"].join(" ")} aria-hidden="true" />
             </button>
             <input
               ref={searchInputRef}
