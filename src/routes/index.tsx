@@ -75,7 +75,7 @@ function HeroSection() {
         <Reveal delay={80}>
           <h1 className="mt-6 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-7xl">
             Plant protection,{" "}
-            <span className="text-gradient-brand bg-gradient-to-r from-white via-[var(--brand-glow)] to-[var(--brand-accent)] bg-clip-text text-transparent">
+            <span className="text-gradient-brand bg-gradient-to-r from-white via-[var(--brand-glow)] to-[var(--brand-accent)] bg-clip-text text-slate-200">
               engineered for Australian conditions.
             </span>
           </h1>
