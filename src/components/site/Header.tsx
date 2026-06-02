@@ -105,12 +105,7 @@ export function Header() {
         <Link
           to="/"
           aria-label="Indigo Specialty Products — home"
-          className={[
-            "flex items-center gap-2 rounded-2xl px-2.5 py-1.5 transition-colors",
-            solid
-              ? "bg-transparent"
-              : "bg-white/92 ring-1 ring-white/40 backdrop-blur-sm shadow-[0_6px_22px_-12px_rgba(12,35,64,0.45)]",
-          ].join(" ")}
+          className="flex items-center gap-2 px-1 py-1.5"
         >
           <img
             src={logo}
