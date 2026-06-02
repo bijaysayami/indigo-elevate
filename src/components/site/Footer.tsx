@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { COMPANY, PRODUCT_RANGES } from "@/lib/site-data";
 import logo from "@/assets/logo.png";
 import soilBg from "@/assets/footer-soil.jpg";
-import grassStrip from "@/assets/footer-grass.png";
 import { Linkedin, Facebook, Instagram, Youtube, Twitter, AtSign } from "lucide-react";
 
 const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
