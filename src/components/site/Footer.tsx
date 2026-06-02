@@ -16,12 +16,6 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> 
 export function Footer() {
   return (
     <footer className="relative mt-32 text-white">
-      <img
-        src={grassStrip}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-16 z-10 h-24 w-full object-cover object-bottom select-none"
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-cover bg-top bg-no-repeat"
