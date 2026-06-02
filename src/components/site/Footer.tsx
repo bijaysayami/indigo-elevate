@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { COMPANY, PRODUCT_RANGES } from "@/lib/site-data";
 import logo from "@/assets/logo.png";
 import soilBg from "@/assets/footer-soil.jpg";
-import grassStrip from "@/assets/footer-grass.png";
 import { Linkedin, Facebook, Instagram, Youtube, Twitter, AtSign } from "lucide-react";
 
 const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -17,12 +16,6 @@ const SOCIAL_ICONS: Record<string, React.ComponentType<{ className?: string }>> 
 export function Footer() {
   return (
     <footer className="relative mt-32 text-white">
-      <img
-        src={grassStrip}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-16 z-10 h-24 w-full object-cover object-bottom select-none"
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-cover bg-top bg-no-repeat"
@@ -35,7 +28,7 @@ export function Footer() {
       <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8 md:py-20">
         <div>
           <Link to="/" aria-label="Indigo Specialty Products — home" className="inline-block">
-            <img src={logo} alt="Indigo Specialty Products" width={160} height={62} className="h-10 w-auto" />
+            <img src={logo} alt="Indigo Specialty Products" width={160} height={62} className="h-10 w-auto brightness-0 invert" />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
             Australian-manufactured plant protection, nutrition, soil surfactants, biologicals and aquatic management — engineered for specialty markets.
