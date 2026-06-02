@@ -105,14 +105,14 @@ export function Header() {
         <Link
           to="/"
           aria-label="Indigo Specialty Products — home"
-          className="flex items-center gap-2 px-1 py-1.5"
+          className="inline-flex items-center gap-2 rounded-xl bg-white/92 p-2 shadow-sm md:p-2.5"
         >
           <img
             src={logo}
             alt="Indigo Specialty Products"
-            width={140}
-            height={54}
-            className="h-8 w-auto md:h-9"
+            width={160}
+            height={62}
+            className="h-9 w-auto md:h-11"
           />
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
