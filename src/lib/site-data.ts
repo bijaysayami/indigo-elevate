@@ -158,9 +158,13 @@ export type NewsItem = {
   category: "Newsletter" | "Product" | "Testimonial" | "People";
   date: string;
   image: ProductRange["image"];
+  author?: string;
+  readMinutes?: number;
+  body: string[];
+  highlights?: string[];
 };
 
-export const NEWS: NewsItem[] = ([
+export const NEWS: NewsItem[] = [
   {
     slug: "autumn-newsletter-2026",
     title: "Autumn Newsletter 2026",
@@ -169,6 +173,18 @@ export const NEWS: NewsItem[] = ([
     category: "Newsletter",
     date: "2026-04-10",
     image: "forestry",
+    author: "Indigo Specialty Products",
+    readMinutes: 6,
+    highlights: [
+      "New ProForce releases for the autumn program",
+      "Agronomy notes for transitioning turf",
+      "Customer stories from across QLD and NSW",
+    ],
+    body: [
+      "Welcome to the Autumn 2026 edition of the Indigo Specialty Products newsletter. As temperatures ease across the country, our team has put together a snapshot of the products, programs and people shaping the season ahead.",
+      "Inside this issue you'll find launch notes on two new ProForce formulations, updated agronomy guidance for cool-season transitions, and a behind-the-scenes look at how three of our long-term customers are using Indigo products in their day-to-day operations.",
+      "We've also included a refreshed compatibility chart for our most-requested tank mixes, plus a printable application calendar you can pin in the shed. As always, reach out to your local Indigo representative for region-specific advice — we're here to help you get the most out of every application.",
+    ],
   },
   {
     slug: "proforce-scarlet-trio",
@@ -178,6 +194,17 @@ export const NEWS: NewsItem[] = ([
     category: "Product",
     date: "2026-03-22",
     image: "turf",
+    readMinutes: 4,
+    highlights: [
+      "Three modes of action in a single formulation",
+      "Targets surface and sub-surface turf pests",
+      "Low odour, low residue — suitable for high-traffic sites",
+    ],
+    body: [
+      "ProForce Scarlet Trio is a new triple-action insecticide developed for the unique pressure of Australian sports turf, golf courses and amenity sites. By combining three complementary modes of action in one easy-to-handle pack, Scarlet Trio gives turf managers broader spectrum control with fewer applications.",
+      "Field trials across QLD, NSW and VIC have shown strong knockdown of surface-feeding caterpillars and sub-surface scarab larvae, with a residual window that fits neatly into a typical four-to-six week IPM program.",
+      "Scarlet Trio is available now in 5 L and 10 L pack sizes. Talk to your Indigo Specialty representative for stewardship guidance, resistance management notes, and a starter program tailored to your site.",
+    ],
   },
   {
     slug: "curatol-customer-testimonial",
@@ -187,6 +214,13 @@ export const NEWS: NewsItem[] = ([
     category: "Testimonial",
     date: "2026-03-05",
     image: "turf",
+    author: "Glenmore Heritage GC Superintendent Team",
+    readMinutes: 5,
+    body: [
+      "Glenmore Heritage Golf Course sits on a sandy belt that, while excellent for playability, exposes greens and approaches to consistent fungal pressure right through summer and into early autumn.",
+      "\"Curatol 120 SC has become the backbone of our preventative program,\" says the Glenmore superintendent team. \"We've been able to stretch our spray intervals without sacrificing turf quality, and the curative window gives us confidence when weather windows tighten.\"",
+      "The team rotates Curatol 120 SC with two complementary modes of action across the playing surfaces, and credits the program with a noticeable reduction in disease breakthrough events compared to the previous two seasons.",
+    ],
   },
   {
     slug: "agritec-algaecide-testimonial",
@@ -196,6 +230,12 @@ export const NEWS: NewsItem[] = ([
     category: "Testimonial",
     date: "2026-02-18",
     image: "aquatics",
+    readMinutes: 4,
+    body: [
+      "Casey Fields is one of Victoria's busiest community sports complexes, and its central ornamental lake plays a key role in both stormwater management and the visitor experience.",
+      "Persistent late-summer algal blooms had begun to affect water clarity and odour around the pavilion. After a site assessment, the Indigo Aquatics team introduced Agritec Algaecide as part of an integrated water quality program — combining targeted treatment with monitoring and aeration adjustments.",
+      "Within two treatment cycles the visible bloom had cleared, and ongoing low-rate maintenance applications have kept the lake in good condition through the peak season without disrupting community events.",
+    ],
   },
   {
     slug: "fast-draw-arborcare",
@@ -205,6 +245,13 @@ export const NEWS: NewsItem[] = ([
     category: "Testimonial",
     date: "2026-02-01",
     image: "forestry",
+    author: "ArborCare QLD",
+    readMinutes: 4,
+    body: [
+      "ArborCare QLD manages vegetation along powerline easements, rail corridors and rural roadsides — sites where access windows are narrow and re-treatment is costly.",
+      "After a 12-month evaluation, the team has rolled ProForce Fast Draw 100 EC into their core program. \"The speed of knockdown is the standout for us,\" says the ArborCare operations lead. \"Crews can see the result inside a few days, which makes route planning and client reporting a lot easier.\"",
+      "Used as part of a balanced selective and non-selective program, Fast Draw 100 EC has helped reduce the number of return visits required across high-pressure sections of their network.",
+    ],
   },
   {
     slug: "caine-james-appointment",
@@ -214,6 +261,12 @@ export const NEWS: NewsItem[] = ([
     category: "People",
     date: "2026-01-20",
     image: "nursery",
+    readMinutes: 2,
+    body: [
+      "We're delighted to welcome Caine James to the Indigo Specialty Products team as Market Manager — Turf Production.",
+      "Caine brings more than 15 years of hands-on experience across commercial turf production, sports turf and golf, and will work closely with growers across Australia to develop programs tailored to their specific operations.",
+      "If you'd like to connect with Caine about your turf production program, get in touch with our team and we'll make the introduction.",
+    ],
   },
   {
     slug: "miticor-980-g",
@@ -223,6 +276,17 @@ export const NEWS: NewsItem[] = ([
     category: "Product",
     date: "2025-12-12",
     image: "turf",
+    readMinutes: 4,
+    highlights: [
+      "Granular formulation for precise application",
+      "Suitable for turf, horticulture and non-crop sites",
+      "Lower volatility profile than traditional fumigants",
+    ],
+    body: [
+      "ProForce Miticor® 980 G is a new precision granular fumigant developed for use across turf, horticulture and non-crop markets where targeted soil treatment is required.",
+      "The granular format gives operators a cleaner, more controlled application than traditional liquid fumigants, with reduced drift potential and a more predictable distribution pattern.",
+      "Miticor 980 G is available through Indigo Specialty Products and our authorised distribution partners. Please speak with your Indigo representative about site assessment, application equipment and stewardship requirements before first use.",
+    ],
   },
   {
     slug: "padre-270-pgr",
@@ -232,8 +296,19 @@ export const NEWS: NewsItem[] = ([
     category: "Product",
     date: "2025-11-28",
     image: "forestry",
+    readMinutes: 4,
+    highlights: [
+      "Reduces mowing and slashing frequency",
+      "Ideal for embankments, easements and roadsides",
+      "Compatible with most selective herbicide programs",
+    ],
+    body: [
+      "ProForce Padre® 270 is a new plant growth regulator built for the realities of industrial vegetation management — large, often difficult-to-access sites where every reduction in mechanical maintenance translates directly to cost and safety improvements.",
+      "Applied as part of a planned program, Padre 270 slows vegetative growth and extends the interval between mowing or slashing events, freeing crews to focus on higher-value work along the corridor.",
+      "Padre 270 is fully compatible with most selective herbicide programs, making it easy to integrate into existing tank mixes. Reach out to the Indigo IVM team for application timing, rate selection and program design support.",
+    ],
   },
-] as const).map((n) => ({ ...n })) as NewsItem[];
+];
 
 export const COMPANY = {
   name: "Indigo Specialty Products",
