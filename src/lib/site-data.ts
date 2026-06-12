@@ -158,6 +158,10 @@ export type NewsItem = {
   category: "Newsletter" | "Product" | "Testimonial" | "People";
   date: string;
   image: ProductRange["image"];
+  author?: string;
+  readMinutes?: number;
+  body: string[];
+  highlights?: string[];
 };
 
 export const NEWS: NewsItem[] = ([
