@@ -108,7 +108,7 @@ function NewsDetailPage() {
               </div>
 
               <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground/90 md:text-lg">
-                {item.body.map((p, i) => (
+                {item.body.map((p: string, i: number) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
@@ -119,7 +119,7 @@ function NewsDetailPage() {
                     Key highlights
                   </h2>
                   <ul className="mt-4 space-y-3">
-                    {item.highlights.map((h) => (
+                    {item.highlights.map((h: string) => (
                       <li key={h} className="flex items-start gap-3 text-sm md:text-base">
                         <span className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-[var(--brand-mid)]" />
                         <span>{h}</span>
