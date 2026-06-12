@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Container } from "@/components/site/Container";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
@@ -44,7 +44,11 @@ function NewsPage() {
       <section className="pb-24">
         <Container>
           <Reveal>
-            <article className="group grid overflow-hidden rounded-3xl border border-border bg-card md:grid-cols-2">
+            <Link
+              to="/news/$slug"
+              params={{ slug: feature.slug }}
+              className="group grid overflow-hidden rounded-3xl border border-border bg-card transition-colors hover:border-[var(--brand-mid)]/50 md:grid-cols-2"
+            >
               <div className="aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[420px]">
                 <img src={IMG[feature.image]} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
               </div>
@@ -57,13 +61,17 @@ function NewsPage() {
                 <h2 className="mt-4 text-balance text-2xl font-semibold tracking-tight md:text-4xl">{feature.title}</h2>
                 <p className="mt-4 text-muted-foreground">{feature.excerpt}</p>
               </div>
-            </article>
+            </Link>
           </Reveal>
 
           <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((n, i) => (
               <Reveal key={n.slug} delay={i * 50}>
-                <article className="group h-full overflow-hidden rounded-3xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-[var(--brand-mid)]/50">
+                <Link
+                  to="/news/$slug"
+                  params={{ slug: n.slug }}
+                  className="group block h-full overflow-hidden rounded-3xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-[var(--brand-mid)]/50"
+                >
                   <div className="aspect-[16/10] overflow-hidden">
                     <img src={IMG[n.image]} alt="" loading="lazy" className="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
@@ -78,7 +86,7 @@ function NewsPage() {
                     <h3 className="text-lg font-semibold leading-snug tracking-tight">{n.title}</h3>
                     <p className="text-sm text-muted-foreground">{n.excerpt}</p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             ))}
           </div>
