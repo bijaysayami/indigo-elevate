@@ -23,6 +23,7 @@ import { Route as BioforceRouteImport } from './routes/bioforce'
 import { Route as AquaticsRouteImport } from './routes/aquatics'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as NewsSlugRouteImport } from './routes/news.$slug'
 
 const TurfProductionRoute = TurfProductionRouteImport.update({
   id: '/turf-production',
@@ -94,6 +95,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsSlugRoute = NewsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => NewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -105,11 +111,12 @@ export interface FileRoutesByFullPath {
   '/duracote': typeof DuracoteRoute
   '/hydroforce': typeof HydroforceRoute
   '/ivm': typeof IvmRoute
-  '/news': typeof NewsRoute
+  '/news': typeof NewsRouteWithChildren
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
   '/turf-production': typeof TurfProductionRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -121,11 +128,12 @@ export interface FileRoutesByTo {
   '/duracote': typeof DuracoteRoute
   '/hydroforce': typeof HydroforceRoute
   '/ivm': typeof IvmRoute
-  '/news': typeof NewsRoute
+  '/news': typeof NewsRouteWithChildren
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
   '/turf-production': typeof TurfProductionRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -138,11 +146,12 @@ export interface FileRoutesById {
   '/duracote': typeof DuracoteRoute
   '/hydroforce': typeof HydroforceRoute
   '/ivm': typeof IvmRoute
-  '/news': typeof NewsRoute
+  '/news': typeof NewsRouteWithChildren
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
   '/turf-production': typeof TurfProductionRoute
+  '/news/$slug': typeof NewsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/proforce'
     | '/small-packs'
     | '/turf-production'
+    | '/news/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/proforce'
     | '/small-packs'
     | '/turf-production'
+    | '/news/$slug'
   id:
     | '__root__'
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/proforce'
     | '/small-packs'
     | '/turf-production'
+    | '/news/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -205,7 +217,7 @@ export interface RootRouteChildren {
   DuracoteRoute: typeof DuracoteRoute
   HydroforceRoute: typeof HydroforceRoute
   IvmRoute: typeof IvmRoute
-  NewsRoute: typeof NewsRoute
+  NewsRoute: typeof NewsRouteWithChildren
   ProductsRoute: typeof ProductsRoute
   ProforceRoute: typeof ProforceRoute
   SmallPacksRoute: typeof SmallPacksRoute
@@ -312,8 +324,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/$slug': {
+      id: '/news/$slug'
+      path: '/$slug'
+      fullPath: '/news/$slug'
+      preLoaderRoute: typeof NewsSlugRouteImport
+      parentRoute: typeof NewsRoute
+    }
   }
 }
+
+interface NewsRouteChildren {
+  NewsSlugRoute: typeof NewsSlugRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsSlugRoute: NewsSlugRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -325,7 +354,7 @@ const rootRouteChildren: RootRouteChildren = {
   DuracoteRoute: DuracoteRoute,
   HydroforceRoute: HydroforceRoute,
   IvmRoute: IvmRoute,
-  NewsRoute: NewsRoute,
+  NewsRoute: NewsRouteWithChildren,
   ProductsRoute: ProductsRoute,
   ProforceRoute: ProforceRoute,
   SmallPacksRoute: SmallPacksRoute,
