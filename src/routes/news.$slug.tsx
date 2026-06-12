@@ -9,7 +9,7 @@ import aquatics from "@/assets/aquatics.jpg";
 import forestry from "@/assets/forestry.jpg";
 import nursery from "@/assets/nursery.jpg";
 
-const IMG = { droplet, turf, aquatics, forestry, nursery } as const;
+const IMG: Record<string, string> = { droplet, turf, aquatics, forestry, nursery };
 
 export const Route = createFileRoute("/news/$slug")({
   head: ({ params }) => {
