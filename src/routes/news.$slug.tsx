@@ -89,19 +89,46 @@ function NewsDetailPage() {
 
           <Reveal delay={80}>
             <article className="mx-auto mt-12 max-w-3xl">
-              <div className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
                 <span>{item.category}</span>
                 <span className="size-1 rounded-full bg-muted-foreground/50" />
                 <time dateTime={item.date}>{dateLabel}</time>
+                {item.readMinutes ? (
+                  <>
+                    <span className="size-1 rounded-full bg-muted-foreground/50" />
+                    <span>{item.readMinutes} min read</span>
+                  </>
+                ) : null}
+                {item.author ? (
+                  <>
+                    <span className="size-1 rounded-full bg-muted-foreground/50" />
+                    <span>By {item.author}</span>
+                  </>
+                ) : null}
               </div>
-              <div className="prose prose-neutral mt-6 max-w-none text-base leading-relaxed text-foreground/90 md:text-lg">
-                <p>{item.excerpt}</p>
-                <p>
-                  For more detail on this update, get in touch with the Indigo
-                  Specialty Products team — we’re happy to share trial data,
-                  application guidance, and stocking information for your region.
-                </p>
+
+              <div className="mt-8 space-y-5 text-base leading-relaxed text-foreground/90 md:text-lg">
+                {item.body.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
+
+              {item.highlights?.length ? (
+                <aside className="mt-10 rounded-2xl border border-border bg-secondary/40 p-6 md:p-8">
+                  <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    Key highlights
+                  </h2>
+                  <ul className="mt-4 space-y-3">
+                    {item.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-3 text-sm md:text-base">
+                        <span className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-[var(--brand-mid)]" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              ) : null}
+
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link
                   to="/news"
