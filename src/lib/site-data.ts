@@ -164,7 +164,7 @@ export type NewsItem = {
   highlights?: string[];
 };
 
-export const NEWS: NewsItem[] = ([
+export const NEWS: NewsItem[] = [
   {
     slug: "autumn-newsletter-2026",
     title: "Autumn Newsletter 2026",
@@ -308,7 +308,7 @@ export const NEWS: NewsItem[] = ([
       "Padre 270 is fully compatible with most selective herbicide programs, making it easy to integrate into existing tank mixes. Reach out to the Indigo IVM team for application timing, rate selection and program design support.",
     ],
   },
-] as const).map((n) => ({ ...n })) as NewsItem[];
+];
 
 export const COMPANY = {
   name: "Indigo Specialty Products",
