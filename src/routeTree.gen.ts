@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TurfProductionRouteImport } from './routes/turf-production'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as SmallPacksRouteImport } from './routes/small-packs'
 import { Route as ProforceRouteImport } from './routes/proforce'
 import { Route as ProductsRouteImport } from './routes/products'
@@ -19,16 +21,29 @@ import { Route as HydroforceRouteImport } from './routes/hydroforce'
 import { Route as DuracoteRouteImport } from './routes/duracote'
 import { Route as DownloadsRouteImport } from './routes/downloads'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as BioforceRouteImport } from './routes/bioforce'
 import { Route as AquaticsRouteImport } from './routes/aquatics'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsIndexRouteImport } from './routes/news.index'
+import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as NewsSlugRouteImport } from './routes/news.$slug'
+import { Route as CatalogSlugRouteImport } from './routes/catalog.$slug'
 
 const TurfProductionRoute = TurfProductionRouteImport.update({
   id: '/turf-production',
   path: '/turf-production',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SmallPacksRoute = SmallPacksRouteImport.update({
@@ -76,6 +91,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogRoute = CatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BioforceRoute = BioforceRouteImport.update({
   id: '/bioforce',
   path: '/bioforce',
@@ -101,10 +121,20 @@ const NewsIndexRoute = NewsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => NewsRoute,
 } as any)
+const CatalogIndexRoute = CatalogIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CatalogRoute,
+} as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => NewsRoute,
+} as any)
+const CatalogSlugRoute = CatalogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CatalogRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -112,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/aquatics': typeof AquaticsRoute
   '/bioforce': typeof BioforceRoute
+  '/catalog': typeof CatalogRouteWithChildren
   '/contact': typeof ContactRoute
   '/downloads': typeof DownloadsRoute
   '/duracote': typeof DuracoteRoute
@@ -121,8 +152,12 @@ export interface FileRoutesByFullPath {
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
   '/turf-production': typeof TurfProductionRoute
+  '/catalog/$slug': typeof CatalogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/catalog/': typeof CatalogIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -138,8 +173,12 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
   '/turf-production': typeof TurfProductionRoute
+  '/catalog/$slug': typeof CatalogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/catalog': typeof CatalogIndexRoute
   '/news': typeof NewsIndexRoute
 }
 export interface FileRoutesById {
@@ -148,6 +187,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/aquatics': typeof AquaticsRoute
   '/bioforce': typeof BioforceRoute
+  '/catalog': typeof CatalogRouteWithChildren
   '/contact': typeof ContactRoute
   '/downloads': typeof DownloadsRoute
   '/duracote': typeof DuracoteRoute
@@ -157,8 +197,12 @@ export interface FileRoutesById {
   '/products': typeof ProductsRoute
   '/proforce': typeof ProforceRoute
   '/small-packs': typeof SmallPacksRoute
+  '/team': typeof TeamRoute
+  '/testimonials': typeof TestimonialsRoute
   '/turf-production': typeof TurfProductionRoute
+  '/catalog/$slug': typeof CatalogSlugRoute
   '/news/$slug': typeof NewsSlugRoute
+  '/catalog/': typeof CatalogIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRouteTypes {
@@ -168,6 +212,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/aquatics'
     | '/bioforce'
+    | '/catalog'
     | '/contact'
     | '/downloads'
     | '/duracote'
@@ -177,8 +222,12 @@ export interface FileRouteTypes {
     | '/products'
     | '/proforce'
     | '/small-packs'
+    | '/team'
+    | '/testimonials'
     | '/turf-production'
+    | '/catalog/$slug'
     | '/news/$slug'
+    | '/catalog/'
     | '/news/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -194,8 +243,12 @@ export interface FileRouteTypes {
     | '/products'
     | '/proforce'
     | '/small-packs'
+    | '/team'
+    | '/testimonials'
     | '/turf-production'
+    | '/catalog/$slug'
     | '/news/$slug'
+    | '/catalog'
     | '/news'
   id:
     | '__root__'
@@ -203,6 +256,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/aquatics'
     | '/bioforce'
+    | '/catalog'
     | '/contact'
     | '/downloads'
     | '/duracote'
@@ -212,8 +266,12 @@ export interface FileRouteTypes {
     | '/products'
     | '/proforce'
     | '/small-packs'
+    | '/team'
+    | '/testimonials'
     | '/turf-production'
+    | '/catalog/$slug'
     | '/news/$slug'
+    | '/catalog/'
     | '/news/'
   fileRoutesById: FileRoutesById
 }
@@ -222,6 +280,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AquaticsRoute: typeof AquaticsRoute
   BioforceRoute: typeof BioforceRoute
+  CatalogRoute: typeof CatalogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DownloadsRoute: typeof DownloadsRoute
   DuracoteRoute: typeof DuracoteRoute
@@ -231,6 +290,8 @@ export interface RootRouteChildren {
   ProductsRoute: typeof ProductsRoute
   ProforceRoute: typeof ProforceRoute
   SmallPacksRoute: typeof SmallPacksRoute
+  TeamRoute: typeof TeamRoute
+  TestimonialsRoute: typeof TestimonialsRoute
   TurfProductionRoute: typeof TurfProductionRoute
 }
 
@@ -241,6 +302,20 @@ declare module '@tanstack/react-router' {
       path: '/turf-production'
       fullPath: '/turf-production'
       preLoaderRoute: typeof TurfProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/small-packs': {
@@ -306,6 +381,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalog': {
+      id: '/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof CatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bioforce': {
       id: '/bioforce'
       path: '/bioforce'
@@ -341,6 +423,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsIndexRouteImport
       parentRoute: typeof NewsRoute
     }
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof CatalogIndexRouteImport
+      parentRoute: typeof CatalogRoute
+    }
     '/news/$slug': {
       id: '/news/$slug'
       path: '/$slug'
@@ -348,8 +437,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsSlugRouteImport
       parentRoute: typeof NewsRoute
     }
+    '/catalog/$slug': {
+      id: '/catalog/$slug'
+      path: '/$slug'
+      fullPath: '/catalog/$slug'
+      preLoaderRoute: typeof CatalogSlugRouteImport
+      parentRoute: typeof CatalogRoute
+    }
   }
 }
+
+interface CatalogRouteChildren {
+  CatalogSlugRoute: typeof CatalogSlugRoute
+  CatalogIndexRoute: typeof CatalogIndexRoute
+}
+
+const CatalogRouteChildren: CatalogRouteChildren = {
+  CatalogSlugRoute: CatalogSlugRoute,
+  CatalogIndexRoute: CatalogIndexRoute,
+}
+
+const CatalogRouteWithChildren =
+  CatalogRoute._addFileChildren(CatalogRouteChildren)
 
 interface NewsRouteChildren {
   NewsSlugRoute: typeof NewsSlugRoute
@@ -368,6 +477,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AquaticsRoute: AquaticsRoute,
   BioforceRoute: BioforceRoute,
+  CatalogRoute: CatalogRouteWithChildren,
   ContactRoute: ContactRoute,
   DownloadsRoute: DownloadsRoute,
   DuracoteRoute: DuracoteRoute,
@@ -377,6 +487,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsRoute: ProductsRoute,
   ProforceRoute: ProforceRoute,
   SmallPacksRoute: SmallPacksRoute,
+  TeamRoute: TeamRoute,
+  TestimonialsRoute: TestimonialsRoute,
   TurfProductionRoute: TurfProductionRoute,
 }
 export const routeTree = rootRouteImport
