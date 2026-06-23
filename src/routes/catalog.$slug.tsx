@@ -80,7 +80,7 @@ function ProductDetail() {
                 <p className="mt-4 text-pretty text-base text-muted-foreground md:text-lg">{product.short}</p>
 
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-foreground/85">
-                  {product.description.map((para, i) => (
+                  {product.description.map((para: string, i: number) => (
                     <p key={i}>{para}</p>
                   ))}
                 </div>
