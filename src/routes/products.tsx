@@ -69,6 +69,22 @@ function ProductsPage() {
         title={<>Search the full Indigo Specialty range.</>}
         subtitle="Eight specialty ranges across plant protection, nutrition, biologicals, soil & water, and aquatics — all engineered for Australian conditions."
       />
+      <section className="pb-4">
+        <Container>
+          <Reveal>
+            <Link
+              to="/catalog"
+              className="group inline-flex items-center justify-between gap-4 rounded-2xl border border-[var(--brand-mid)]/30 bg-[color-mix(in_oklab,var(--brand-mid)_5%,white)] px-5 py-4 text-sm transition-all hover:border-[var(--brand-mid)]/60 hover:shadow-elegant"
+            >
+              <span>
+                <span className="block text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-mid)]">Individual products</span>
+                <span className="mt-0.5 block font-semibold text-foreground">Browse the full catalog with Label, SDS &amp; TechNote PDFs →</span>
+              </span>
+              <ArrowRight className="size-4 text-[var(--brand-mid)] transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+        </Container>
+      </section>
       <section className="pb-24">
         <Container>
           <Reveal>
