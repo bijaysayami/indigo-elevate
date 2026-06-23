@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 import { PRODUCT_RANGES, COMPANY } from "@/lib/site-data";
 
 const NAV = [
-  { to: "/catalog", label: "Catalog" },
+  { to: "/catalog", label: "Herbicides" },
   { to: "/testimonials", label: "Testimonials" },
   { to: "/team", label: "Team" },
   { to: "/news", label: "News" },
