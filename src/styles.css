@@ -194,7 +194,7 @@
     border: 1px solid color-mix(in oklab, var(--brand-mid) 18%, transparent);
   }
   .glass-dark {
-    background: color-mix(in oklab, #0c2340 60%, transparent);
+    background: color-mix(in oklab, var(--brand-deep) 60%, transparent);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
     border: 1px solid color-mix(in oklab, white 12%, transparent);
