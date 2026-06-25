@@ -230,30 +230,30 @@ function ValuesSection() {
   ];
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
-      <div aria-hidden className="absolute inset-0 -z-10 bg-[var(--brand-deep)]" />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-grid opacity-[0.08]" />
-      <div aria-hidden className="absolute -top-40 left-1/2 -z-10 size-[600px] -translate-x-1/2 rounded-full bg-[var(--brand-accent)]/15 blur-3xl" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-muted" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-grid opacity-[0.4]" />
+      <div aria-hidden className="absolute -top-40 left-1/2 -z-10 size-[600px] -translate-x-1/2 rounded-full bg-[var(--brand-accent)]/20 blur-3xl" />
       <Container>
         <Reveal>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-white/70">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
             <span className="inline-block size-1.5 rounded-full bg-[var(--brand-accent)]" />
             What makes us different
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-white md:text-5xl">
+          <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold tracking-tight text-foreground md:text-5xl">
             Three things that make our products special.
           </h2>
         </Reveal>
         <div className="mt-14 grid gap-5 md:grid-cols-3">
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 100}>
-              <div className="group h-full rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur transition-colors hover:bg-white/[0.07]">
-                <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--brand-accent)]/15 text-[var(--brand-accent)]">
+              <div className="group h-full rounded-3xl border border-[var(--brand-accent)]/40 bg-[var(--brand-accent)] p-7 shadow-elegant transition-transform hover:-translate-y-1">
+                <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--brand-deep)]/10 text-[var(--brand-deep)]">
                   <v.icon className="size-5" aria-hidden />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-white">{v.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{v.body}</p>
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--brand-deep)]">{v.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--brand-deep)]/80">{v.body}</p>
               </div>
             </Reveal>
           ))}
