@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Beaker, Droplets, Leaf, MapPin, Phone, Mail, Shield, Sparkles } from "lucide-react";
 import { Container, Eyebrow } from "@/components/site/Container";
