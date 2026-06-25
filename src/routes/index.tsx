@@ -67,7 +67,7 @@ function HeroSection() {
           height={1080}
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--brand-deep)]/80 via-[var(--brand-deep)]/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-background" />
       </div>
       <div aria-hidden className="absolute inset-0 -z-10 bg-grid opacity-20" />
 
@@ -116,9 +116,9 @@ function HeroSection() {
               { k: "100%", l: "Australian formulated" },
               { k: "20+", l: "Years in market" },
             ].map((stat) => (
-              <div key={stat.l} className="glass-dark rounded-2xl px-4 py-4 text-white">
+              <div key={stat.l} className="rounded-2xl border border-[var(--brand-accent)]/40 bg-[var(--brand-accent)]/90 px-4 py-4 text-[var(--brand-deep)] shadow-elegant backdrop-blur">
                 <div className="text-2xl font-semibold tracking-tight md:text-4xl">{stat.k}</div>
-                <div className="mt-1 text-xs text-white/65 md:text-sm">{stat.l}</div>
+                <div className="mt-1 text-xs text-[var(--brand-deep)]/75 md:text-sm">{stat.l}</div>
               </div>
             ))}
           </div>
