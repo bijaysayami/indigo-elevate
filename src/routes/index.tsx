@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Beaker, Droplets, Leaf, MapPin, Phone, Mail, Shield, Sparkles } from "lucide-react";
 import { Container, Eyebrow } from "@/components/site/Container";
@@ -37,6 +38,11 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  useEffect(() => {
+    document.body.classList.add("home-green-primary");
+    return () => document.body.classList.remove("home-green-primary");
+  }, []);
+
   return (
     <>
       <HeroSection />
@@ -89,7 +95,7 @@ function HeroSection() {
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[var(--brand-deep)] shadow-elegant transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-elegant transition-transform hover:-translate-y-0.5"
             >
               Search all products
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
@@ -339,7 +345,7 @@ function ContactCTA() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <a
                     href={COMPANY.phoneHref}
-                    className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
                   >
                     <Phone className="size-4" /> Call or text {COMPANY.phone}
                   </a>

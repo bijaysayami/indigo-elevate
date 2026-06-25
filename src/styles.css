@@ -150,6 +150,14 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* Homepage green-primary / purple-secondary preview theme */
+body.home-green-primary {
+  --primary: var(--brand-accent);
+  --primary-foreground: var(--brand-deep);
+  --secondary: var(--brand-deep);
+  --secondary-foreground: oklch(0.97 0.01 220);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
