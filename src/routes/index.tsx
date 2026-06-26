@@ -74,7 +74,7 @@ function HeroSection() {
         <Reveal>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-white/80 backdrop-blur">
             <span className="inline-block size-1.5 rounded-full bg-[var(--brand-accent)]" />
-            Australian-manufactured · est. since the field
+            TRUSTED AGRICULTURAL SOLUTIONS PARTNER IN AUSTRALIA
           </div>
         </Reveal>
         <Reveal delay={80}>
