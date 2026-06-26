@@ -46,7 +46,6 @@ function HomePage() {
   return (
     <>
       <HeroSection />
-      <MarketsStrip />
       <RangesSection />
       <ValuesSection />
       <NewsSection />
