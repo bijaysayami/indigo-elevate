@@ -232,8 +232,8 @@ function ValuesSection() {
                 <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--brand-deep)]/10 text-white">
                   <v.icon className="size-5" aria-hidden />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--brand-deep)]">{v.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[var(--brand-deep)]/80">{v.body}</p>
+                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-white">{v.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/80">{v.body}</p>
               </div>
             </Reveal>
           ))}
