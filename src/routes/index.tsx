@@ -127,25 +127,6 @@ function HeroSection() {
   );
 }
 
-function MarketsStrip() {
-  return (
-    <section aria-label="Markets we serve" className="border-y border-border bg-secondary/40">
-      <Container className="overflow-hidden py-6">
-        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-          <span className="inline-block size-1.5 rounded-full bg-[var(--brand-mid)]" />
-          Markets served
-        </div>
-        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-foreground/80">
-          {MARKETS.map((m) => (
-            <span key={m} className="inline-flex items-center gap-2">
-              <span className="inline-block size-1 rounded-full bg-foreground/30" /> {m}
-            </span>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 function RangesSection() {
   return (
