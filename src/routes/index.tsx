@@ -249,7 +249,7 @@ function ValuesSection() {
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 100}>
               <div className="group h-full rounded-3xl border border-[var(--brand-accent)]/40 bg-[var(--brand-accent)] p-7 shadow-elegant transition-transform hover:-translate-y-1">
-                <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--brand-deep)]/10 text-[var(--brand-deep)]">
+                <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-[var(--brand-deep)]/10 text-white">
                   <v.icon className="size-5" aria-hidden />
                 </div>
                 <h3 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--brand-deep)]">{v.title}</h3>
