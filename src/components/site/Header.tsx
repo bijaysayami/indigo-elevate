@@ -148,7 +148,7 @@ export function Header() {
             </Link>
             <div
               className={[
-                "absolute left-1/2 top-full z-50 w-[min(92vw,640px)] -translate-x-1/2 pt-3",
+                "absolute left-0 top-full z-50 w-[min(92vw,640px)] pt-3",
                 "transition-all duration-200 ease-out",
                 productsOpen
                   ? "translate-y-0 opacity-100"
