@@ -116,9 +116,9 @@ function HeroSection() {
               { k: "100%", l: "Australian formulated" },
               { k: "20+", l: "Years in market" },
             ].map((stat) => (
-              <div key={stat.l} className="rounded-2xl border border-[var(--brand-accent)]/40 bg-[var(--brand-accent)]/90 px-4 py-4 text-[var(--brand-deep)] shadow-elegant backdrop-blur">
+              <div key={stat.l} className="rounded-2xl border border-white/10 bg-black/50 px-4 py-4 text-white shadow-elegant backdrop-blur-xl">
                 <div className="text-2xl font-semibold tracking-tight md:text-4xl">{stat.k}</div>
-                <div className="mt-1 text-xs text-[var(--brand-deep)]/75 md:text-sm">{stat.l}</div>
+                <div className="mt-1 text-xs text-white/80 md:text-sm">{stat.l}</div>
               </div>
             ))}
           </div>
