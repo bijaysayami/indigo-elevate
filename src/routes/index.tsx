@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Beaker, Droplets, Leaf, MapPin, Phone, Mail, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf, MapPin, Phone, Mail, Sparkles } from "lucide-react";
 import { Container, Eyebrow } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
-import { COMPANY, MARKETS, NEWS, PRODUCT_RANGES } from "@/lib/site-data";
+import { COMPANY, NEWS, PRODUCT_RANGES } from "@/lib/site-data";
 import hero from "@/assets/hero.jpg";
 import droplet from "@/assets/droplet.jpg";
 import turf from "@/assets/turf.jpg";
