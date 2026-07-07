@@ -158,6 +158,24 @@ body.home-green-primary {
   --secondary-foreground: oklch(0.97 0.01 220);
 }
 
+/* Homepage all-green preview theme (v2) */
+body.home-all-green {
+  --brand-deep: oklch(0.32 0.09 150);        /* deep forest */
+  --brand: oklch(0.42 0.14 145);             /* mid green */
+  --brand-mid: oklch(0.55 0.16 142);         /* fresh green */
+  --brand-accent: oklch(0.78 0.19 135);      /* bright lime */
+  --brand-glow: oklch(0.90 0.14 135);
+  --primary: oklch(0.32 0.09 150);
+  --primary-foreground: oklch(0.985 0.02 135);
+  --secondary: oklch(0.94 0.05 138);
+  --secondary-foreground: oklch(0.28 0.08 150);
+  --accent: oklch(0.92 0.08 138);
+  --accent-foreground: oklch(0.28 0.08 150);
+  --ring: oklch(0.55 0.16 142);
+  --foreground: oklch(0.18 0.04 150);
+  --muted-foreground: oklch(0.42 0.03 150);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
